@@ -1,0 +1,9 @@
+node_modules
+.idea
+Dockerfile
+.git
+.gitignore
+**/*.so
+golodex_data
+golodex_api
+kubernetes

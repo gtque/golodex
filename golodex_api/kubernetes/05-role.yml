@@ -1,0 +1,16 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: "golodex-api"
+  namespace: "golodex"
+  labels:
+    app.kubernetes.io/name: "golodex-api"
+    app.kubernetes.io/instance: "golodex-api"
+    app.kubernetes.io/managed-by: "eangeli"
+    app.kubernetes.io/version: "1.0-beta"
+    app.kubernetes.io/component: "db-api"
+    app.kubernetes.io/part-of: "golodex"
+rules:
+  - apiGroups: [""]
+    resources: ["endpoints", "services", "pods", "deployments", "configmaps", "secrets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]

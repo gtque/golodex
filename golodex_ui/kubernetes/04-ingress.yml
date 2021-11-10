@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "golodex-ui"
+  namespace: "golodex"
+  labels:
+    app.kubernetes.io/name: "golodex-ui"
+    app.kubernetes.io/managed-by: "eangeli"
+    app.kubernetes.io/version: "1.0-beta"
+    app.kubernetes.io/component: "db-api"
+    app.kubernetes.io/part-of: "golodex"
+spec:
+  rules:
+  - host: golodex.thehangingpen.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: golodex-ui
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - golodex.thehangingpen.com
+    secretName: golodex-couchdb-cert

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "golodex-data"
+  namespace: "golodex"
+  labels:
+    app.kubernetes.io/name: "golodex-data"
+    app.kubernetes.io/managed-by: "eangeli"
+    app.kubernetes.io/version: "1.0-beta"
+    app.kubernetes.io/component: "db-api"
+    app.kubernetes.io/part-of: "golodex"
+spec:
+  ports:
+  - name: tomcat
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/name: golodex-data
+    app.kubernetes.io/instance: golodex-data

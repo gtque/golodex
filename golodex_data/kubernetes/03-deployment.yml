@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "golodex-data"
+  namespace: "golodex"
+  labels:
+    app.kubernetes.io/name: "golodex-data"
+    app.kubernetes.io/managed-by: "eangeli"
+    app.kubernetes.io/version: "1.0-beta"
+    app.kubernetes.io/component: "db-api"
+    app.kubernetes.io/part-of: "golodex"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "golodex-data"
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: "golodex-data"
+        app.kubernetes.io/name: "golodex-data"
+        app.kubernetes.io/managed-by: "eangeli"
+        app.kubernetes.io/version: "1.0-beta"
+        app.kubernetes.io/component: "db-api"
+        app.kubernetes.io/part-of: "golodex"
+    spec:
+      serviceAccountName: "golodex-data"
+      containers:
+      - name: app
+        image: localhost:32000/golodex-data:dev
+        imagePullPolicy: "Always"
+        env:
+        - name: IS_KUBERNETES
+          value: "true"
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /readiness
+            port: 8080
+          initialDelaySeconds: 1
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 60

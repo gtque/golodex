@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "golodex-data"
+  namespace: "golodex"
+  labels:
+    app.kubernetes.io/name: "golodex-data"
+    app.kubernetes.io/managed-by: "eangeli"
+    app.kubernetes.io/version: "1.0-beta"
+    app.kubernetes.io/component: "db-api"
+    app.kubernetes.io/part-of: "golodex"
+data:
+  COUCHDB_ADMIN_USER: "admin"
+  COUCHDB_HOST: "http://golodex-couchdb:5984"
+  GOLODEX_PORT: "8080"

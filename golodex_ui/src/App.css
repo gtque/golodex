@@ -1,0 +1,92 @@
+.App {
+    text-align: center;
+    background-color: #282c34;
+}
+
+.logo_label {
+    float: left;
+}
+
+.logo {
+    height: 20vmin;
+    pointer-events: none;
+    float: left;
+}
+
+.label {
+    float: left;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.content {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.golodex-header {
+    background-color: #282c34;
+    min-height: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, .full_row td {
+    border-bottom: 2px solid black;
+}
+
+.full_row tr:hover{
+    cursor: pointer;
+}
+.nested td, .nested_rows table, .nested_obj table, .nested_obj table tr td {
+    border: 0px solid transparent;
+}
+
+.MuiButton-label {
+    color: darkgray;
+}

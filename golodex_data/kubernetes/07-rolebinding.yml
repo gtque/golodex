@@ -1,0 +1,19 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: "golodex-data"
+  namespace: "golodex"
+  labels:
+    app.kubernetes.io/name: "golodex-data"
+    app.kubernetes.io/managed-by: "eangeli"
+    app.kubernetes.io/version: "1.0-beta"
+    app.kubernetes.io/component: "db-api"
+    app.kubernetes.io/part-of: "golodex"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: "golodex-data"
+subjects:
+- kind: ServiceAccount
+  name: "golodex-data"
+  namespace: "golodex"

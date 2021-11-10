@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "golodex-api"
+  namespace: "golodex"
+  labels:
+    app.kubernetes.io/name: "golodex-api"
+    app.kubernetes.io/managed-by: "eangeli"
+    app.kubernetes.io/version: "1.0-beta"
+    app.kubernetes.io/component: "db-api"
+    app.kubernetes.io/part-of: "golodex"
+data:
+  GOLODEX_DATA_HOST: "http://golodex-data"
+  GOOGLE_CLIENT_ID: "710486342711-3g14joh4shppp62in94pbpktfpqhpeoc.apps.googleusercontent.com"
+  GOLODEX_PORT: "8080"
