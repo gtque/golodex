@@ -78,6 +78,7 @@ export default class Rolodex extends React.Component {
         // alert("searching for: " + this.getSearch())
         //window.location.reload()
         // alert("searching sort order: " + this.state.sort)
+        // console.log("searching........")
         this.setState({
             isReloaded: "searching..." + this.getSearch()
         })

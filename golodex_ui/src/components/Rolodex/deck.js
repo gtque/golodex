@@ -131,7 +131,6 @@ const RenderData = (props) => {
     } else if (props.data === objectConstructor || (props.data !== undefined && props.data !== null && props.data.constructor === Object)) {
         console.log("object time")
         console.log("-> " + Object.keys(props))
-        // return <td><table><thead><tr>boo</tr></thead><tbody><tr><td key={props.keyT}>smile</td></tr></tbody></table></td>
         return (<td class="nested_obj">
             <table>
                 {/*<thead>*/}

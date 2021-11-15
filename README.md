@@ -53,3 +53,10 @@ Before building you probably ought to go to google and search for Google Client 
   * set the go path to the projects root directory
 * protoc --proto_path=./server --go_out=./server --micro_out=./server --go_opt=paths=source_relative pages/about/about.proto
   * configure protoc
+
+## Setting up React
+* Install npm
+* Install react
+  * Install google login: npm install react-google-login
+  * npm install --save-dev jest-fetch-mock
+  * npm i --save-dev enzyme enzyme-adapter-react-16

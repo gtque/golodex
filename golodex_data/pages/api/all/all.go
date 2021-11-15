@@ -11,7 +11,13 @@ import (
 
 type pager string
 
+// Page Wrapper to internal page call passing in the needed functions
 func (p pager) Page(w http.ResponseWriter, req *http.Request) {
+	ThePage(w, req, golodexdata.CouchQueryGet)
+}
+
+//ThePage function with the couch get function passed for easier mocking and testing...
+func ThePage(w http.ResponseWriter, req *http.Request, couchGet golodexdata.CouchQueryNoBody) {
 	var sort = req.URL.Query().Get("sort")
 	var search = req.URL.Query().Get("search")
 	var cards golodexdata.GolodexRolodex
@@ -23,13 +29,13 @@ func (p pager) Page(w http.ResponseWriter, req *http.Request) {
 		var rows golodexdata.GolodexCouchViewRows
 		var data []byte
 		if sort == "ascending" {
-			_data, errAll := golodexdata.CouchQueryGet(req, "_design/golodex/_view/sorted_view")
+			_data, errAll := couchGet(req, "_design/golodex/_view/sorted_view")
 			if errAll != nil {
 				golodexdata.WriteResponse(w, "{\"error\": \"reading from couch\"}", http.StatusInternalServerError)
 			}
 			data = _data
 		} else {
-			_data, errAll := golodexdata.CouchQueryGet(req, "_design/golodex/_view/sorted_view?descending=true")
+			_data, errAll := couchGet(req, "_design/golodex/_view/sorted_view?descending=true")
 			if errAll != nil {
 				golodexdata.WriteResponse(w, "{\"error\": \"reading from couch\"}", http.StatusInternalServerError)
 			}
@@ -47,7 +53,7 @@ func (p pager) Page(w http.ResponseWriter, req *http.Request) {
 		}
 	} else {
 		var rows golodexdata.GolodexCouchRows
-		data, errAll := golodexdata.CouchQueryGet(req, "_all_docs?include_docs=true")
+		data, errAll := couchGet(req, "_all_docs?include_docs=true")
 		if errAll != nil {
 			golodexdata.WriteResponse(w, "{\"error\": \"reading from couch\"}", http.StatusInternalServerError)
 		}

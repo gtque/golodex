@@ -77,6 +77,7 @@ type GolodexCreate struct {
 	Revision string `json:"rev"`
 	Ok bool `json:"ok"`
 }
+
 func couchQuery(req *http.Request, query string, data []byte, method string)([]byte,error) {
 	session := SessionInformation(req)
 	//setup client to make the call
@@ -124,6 +125,8 @@ func couchQuery(req *http.Request, query string, data []byte, method string)([]b
 	return bodyCU,nil
 }
 
+type CouchQueryNoBody func(req *http.Request, query string)([]byte,error)
+
 func CouchQueryGet(req *http.Request, query string)([]byte,error) {
 	bodyCU, err := couchQuery(req, query, nil, http.MethodGet)
 	//log.Println("response from couch: " + (string(bodyCU)))
@@ -135,6 +138,8 @@ func CouchQueryDelete(req *http.Request, query string)([]byte,error) {
 	//log.Println("response from couch: " + (string(bodyCU)))
 	return bodyCU,err
 }
+
+type CouchQueryWithBody func(req *http.Request, query string, data string)([]byte,error)
 
 func CouchQueryPut(req *http.Request, query string, data string)([]byte,error) {
 	bodyCU, err := couchQuery(req, query, []byte(data), http.MethodPut)

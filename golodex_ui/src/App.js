@@ -25,20 +25,20 @@ const handleLogin = async googleData => {
     window.location.reload()
 }
 
-function setToken(loggedIn) {
+export function setToken(loggedIn) {
     sessionStorage.setItem('token', JSON.stringify({
         token: loggedIn?.token,
         id: loggedIn?.id
     }));
 }
 
-function getToken() {
+export function getToken() {
     const tokenString = sessionStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
     return userToken?.token
 }
 
-function getId() {
+export function getId() {
     const tokenString = sessionStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
     return userToken?.id
